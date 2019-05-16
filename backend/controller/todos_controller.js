@@ -12,8 +12,8 @@ exports.index = (req, res) => {
 
 exports.create = (req, res) => {
   let todo = new Todo({
-    title: req.body.title,
-    content: req.body.content
+    title: req.body.todo.title,
+    content: req.body.todo.content
   });
 
   todo.save((err) => {

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 // import qs from 'qs'
 
 export default {
@@ -21,17 +20,16 @@ export default {
     }
   },
   methods: {
-    create: (event) =>{
+    create: function(event) {
       this.$http.post('/api/todos/create', {
         todo: this.todo
       })
       .then(
         (response) => {
-          console.log(response)
-          alert('Success')
+          this.$router.push('/')
         },
-        (error) => {
-          alert(error.response.data.error)
+        (err) => {
+          alert('Error')
         }
       )
       .catch(function (error) {
@@ -39,17 +37,5 @@ export default {
       })
     }
   }
-  // methods: {
-  //   create: (event) =>{
-  //     axios.post('/api/todos/create', this.todo)
-  //     .then(response =>{
-  //       this.$router.push('/')
-  //     })
-  //     .catch(err =>{
-  //       this.error.push(err)
-  //     })
-  //   }
-  // }
-
 }
 </script>
