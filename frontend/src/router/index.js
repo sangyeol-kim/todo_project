@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import HellowWorld from '@/components/HelloWorld';
 
 import New from '@/components/TodoForm'
+import Todos from '@/components/TodoList'
+import Todo from '@/components/TodoShow'
 
 Vue.use(Router);
 
@@ -15,9 +17,19 @@ export default new Router({
       component: HellowWorld
     },
     {
-    path: '/todos/new',
-    name: 'New',
-    component: New
-  }
+      path: '/todos',
+      name: 'Todos',
+      component: Todos
+    },
+    {
+      path: '/todos/new',
+      name: 'New',
+      component: New
+    },
+    {
+      path: '/todos/:id',
+      name: 'Todo',
+      component: Todo
+    }
   ]
 });

@@ -3,10 +3,12 @@ const router = express.Router();
 
 const todosController = require('../controller/todos_controller');
 
+// READ ALL
+router.get('/', todosController.index)
+
 // READ
 // get /todo/:id
-// router.get('/:id', todosController.show);
-router.get('/', todosController.index)
+router.get('/:id', todosController.show);
 
 // CREATE
 // post /todo/create
@@ -18,6 +20,6 @@ router.post('/create', todosController.create);
 
 // DELETE
 // post /todo/:id/delete
-// router.post('/:id/delete', todosController.delete);
+router.delete('/:id', todosController.delete);
 
 module.exports = router;
