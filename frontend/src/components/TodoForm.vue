@@ -1,34 +1,53 @@
 <template>
   <div id="todo-form">
-    <form @submit.prevent="create">
-      제목 : <input v-model="todo.title" placeholder="제목"> <br />
-      내용 : <input v-model="todo.content" placeholder="내용"> <br />
-      우선순위: 
-      <section>
+    <form>
+      <div>
+        <b-field>
+          <b-input 
+            v-model="todo.title"
+            placeholder="할 일을 작성해주세요."
+            icon="fas fa-list-ul"
+            size="is-large">
+          </b-input>
+        </b-field>
+      </div>
+      <div>
+        <b-field>
+          <b-datepicker
+            v-model="todo.deadline"
+            placeholder="마감기한을 설정하세요."
+            size="is-small"
+            :min-date="minDate">
+          </b-datepicker>
+        </b-field>
+      </div>
+      <div>
         <div class="block">
           <b-radio v-model="todo.priority"
-              native-value="high">
+              native-value="red"
+              size="is-medium"
+              type="is-danger">
               중요
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="normal">
+              native-value="orange"
+              size="is-medium"
+              type="is-warning">
               보통
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="low">
+              native-value="black"
+              size="is-medium"
+              type="is-dark">
               낮음
           </b-radio>
         </div>
-    </section>
-      일정:
-      <b-field label="Select a date">
-        <b-datepicker
-            v-model="todo.deadline"
-            placeholder="마감기한을 설정하세요."
-            icon="calendar-today">
-        </b-datepicker>
-      </b-field> <br />
-      <button>글쓰기</button>
+      </div>
+      <b-button 
+        v-on:click.prevent="create" 
+        type="is-primary">
+        Primary
+      </b-button>
     </form>
   </div>
 </template>
@@ -37,17 +56,23 @@
 
 export default {
   data: function () {
+    const today = new Date()
     return {
-      todo: {}
+      todo: {},
+      date: new Date(),
+      minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
     }
   },
   methods: {
     create: function() {
+      if (!this.todo.priority) {
+        this.todo.priority = 'null'
+      }
       this.$http.post('/api/todos/create', this.todo)
       .then(
         (response) => {
-          console.log(response.data)
-          this.$router.push({name: 'Todo', params: { id: response.data._id }})
+          this.$emit("create", response.data)
+          // this.$router.push({name: 'Todo', params: { id: response.data._id }})
         },
         (err) => {
           alert('Error')
@@ -57,6 +82,39 @@ export default {
         alert('error')
       })
     }
+
+
+  // methods: {
+  //   deleteTodo (id) {
+  //     const targetIndex = this.todos.findIndex(v => v._id === id)
+  //     this.$http.delete(`/api/todos/${id}`)
+  //     .then((response) => {
+  //       this.todos.splice(targetIndex, 1)
+  //     })
+  //     // .catch(e => {
+  //     //   this.errors.push(e)
+  //     // })
+  //   }
+  // }
+
   }
 }
 </script>
+
+<style scope>
+  .datepicker {
+    display: inline-block;
+    width: 30em;
+    margin-bottom: 1em;
+  }
+  .field {
+    display: inline-block;
+    width: 30em;
+  }
+  input {
+    text-align: left;
+  }
+  .button {
+    width: 20em;
+  }
+</style>

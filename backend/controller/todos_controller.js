@@ -10,9 +10,9 @@ exports.index = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  console.log(req.body)
   let todo = new Todo({
     title: req.body.title || req.body.todo.title,
-    content: req.body.content || req.body.todo.content,
     deadline: req.body.deadline || req.body.todo.deadline,
     priority: req.body.priority || req.body.todo.priority,
   });

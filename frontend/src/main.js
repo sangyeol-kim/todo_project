@@ -5,9 +5,11 @@ import App from './App';
 import router from './router';
 
 import axios from 'axios';
+import moment from 'moment';
 
 // Vue App에서  this.$http 를 통해 HTTP 요청을 할 수 있는 코드
 Vue.prototype.$http = axios;
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false;
 

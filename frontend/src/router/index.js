@@ -1,13 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import New from '@/components/TodoForm'
+// import New from '@/components/TodoForm'
 import Todos from '@/components/TodoList'
 import Todo from '@/components/TodoShow'
 import Edit from '@/components/TodoEditForm'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fas'
+});
+
 Vue.use(Router);
 
 export default new Router({
