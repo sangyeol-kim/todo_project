@@ -15,15 +15,12 @@ connect(); // DB 실행
 
 app.set('port', process.env.PORT || 8001);
 
+app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/todos', todoRouter);
-app.use(history());
-
-app.get('/', (req, res, next) =>{
-  res.sendFile(path.join(__dirname, '/public/index.html'));
-});
+app.use('/', indexRouter);
 
 app.listen(app.get('port'), () => {
   console.log(`서버가 ${app.get('port')}번 포트에서 정상적으로 작동합니다.`);
