@@ -9,6 +9,12 @@ let TodoSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  deadline: {
+    type: Date,
+  },
+  priority: {
+    type: String,
+  },
   createAt: {
     type: Date,
     default: Date.now

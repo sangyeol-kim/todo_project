@@ -6,14 +6,15 @@ exports.index = (req, res) => {
       res.status(500).send('Something broke!');
     }
     res.json(todos)
-    // JSON.parse(JSON.stringify(docs))
   });
 };
 
 exports.create = (req, res) => {
   let todo = new Todo({
     title: req.body.title || req.body.todo.title,
-    content: req.body.content || req.body.todo.content
+    content: req.body.content || req.body.todo.content,
+    deadline: req.body.deadline || req.body.todo.deadline,
+    priority: req.body.priority || req.body.todo.priority,
   });
 
   todo.save((err) => {
@@ -26,7 +27,6 @@ exports.create = (req, res) => {
 
 exports.show = (req, res) => {
   Todo.findById(req.params.id, (err, todo) => {
-    // id에 해당하는 document 반환.
     if (err) {
       res.status(500).send('Something broke!');
     }
@@ -45,7 +45,6 @@ exports.edit = (req, res) => {
 
 exports.update = (req, res) => {
   Todo.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, todo) => {
-    // $: Query Selection Operator
     if (err) {
       res.status(500).send('Something broke!');
     }

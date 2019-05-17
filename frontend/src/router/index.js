@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HellowWorld from '@/components/HelloWorld';
-
 import New from '@/components/TodoForm'
 import Todos from '@/components/TodoList'
 import Todo from '@/components/TodoShow'
 import Edit from '@/components/TodoEditForm'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
 
+Vue.use(Buefy)
 Vue.use(Router);
 
 export default new Router({
@@ -14,19 +15,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HellowWorld
-    },
-    {
-      path: '/todos',
       name: 'Todos',
       component: Todos
     },
-    {
-      path: '/todos/new',
-      name: 'New',
-      component: New
-    },
+    // {
+    //   path: '/todos/new',
+    //   name: 'New',
+    //   component: New
+    // },
     {
       path: '/todos/edit/:id',
       name: 'Edit',

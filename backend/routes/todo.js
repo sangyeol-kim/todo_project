@@ -4,25 +4,27 @@ const router = express.Router();
 const todosController = require('../controller/todos_controller');
 
 // READ ALL
+// get /todos
 router.get('/', todosController.index)
 
 // READ
-// get /todo/:id
+// get /todos/:id
 router.get('/:id', todosController.show);
 
 // CREATE
-// post /todo/create
+// post /todos/create
 router.post('/create', todosController.create);
 
-//Edit
+// Edit
+// get /todos/edit/:id
 router.get('/edit/:id', todosController.edit)
 
 // UPDATE
-// post /todo/:id/update
+// put /todos/:id
 router.put('/:id', todosController.update);
 
 // DELETE
-// post /todo/:id/delete
+// delete /todo/:id/
 router.delete('/:id', todosController.delete);
 
 module.exports = router;
