@@ -13,20 +13,16 @@
 export default {
   data: function () {
     return {
-      todo: {
-        title: '',
-        content: '',
-      }
+      todo: {}
     }
   },
   methods: {
-    create: function(event) {
-      this.$http.post('/api/todos/create', {
-        todo: this.todo
-      })
+    create: function() {
+      this.$http.post('/api/todos/create', this.todo)
       .then(
         (response) => {
-          this.$router.push('/todos')
+          console.log(response)
+          this.$router.push({name: 'Todo', params: { id: response.data._id }})
         },
         (err) => {
           alert('Error')

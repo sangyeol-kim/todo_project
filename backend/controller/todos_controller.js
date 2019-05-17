@@ -11,7 +11,6 @@ exports.index = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  console.log(req.body)
   let todo = new Todo({
     title: req.body.title || req.body.todo.title,
     content: req.body.content || req.body.todo.content
@@ -21,7 +20,7 @@ exports.create = (req, res) => {
     if (err) {
       res.status(500).send('Something broke!');
     }
-    res.status(200).send('Created Successfully');
+    res.json(todo)
   });
 };
 
@@ -35,13 +34,22 @@ exports.show = (req, res) => {
   });
 };
 
+exports.edit = (req, res) => {
+  Todo.findById(req.params.id, (err, todo) => {
+    if (err) {
+      res.status(500).send('Something broke!');
+    }
+    res.json(todo);
+  });
+};
+
 exports.update = (req, res) => {
   Todo.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, todo) => {
     // $: Query Selection Operator
     if (err) {
       res.status(500).send('Something broke!');
     }
-    res.send('todo Updated');
+    res.json(todo);
   });
 };
 

@@ -5,6 +5,7 @@ import HellowWorld from '@/components/HelloWorld';
 import New from '@/components/TodoForm'
 import Todos from '@/components/TodoList'
 import Todo from '@/components/TodoShow'
+import Edit from '@/components/TodoEditForm'
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/todos/new',
       name: 'New',
       component: New
+    },
+    {
+      path: '/todos/edit/:id',
+      name: 'Edit',
+      component: Edit
     },
     {
       path: '/todos/:id',

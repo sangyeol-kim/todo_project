@@ -6,6 +6,7 @@
       <div>
         <strong>{{todo.title}}</strong>
         <router-link :to="{ name: 'Todo', params: { id: todo._id }}">자세히</router-link>
+        <router-link :to="{ name: 'Edit', params: { id: todo._id }}">수정</router-link>
         <button type="submit" @click="deleteTodo(todo._id)">Delete</button>
       </div>
     </div>

@@ -14,9 +14,12 @@ router.get('/:id', todosController.show);
 // post /todo/create
 router.post('/create', todosController.create);
 
+//Edit
+router.get('/edit/:id', todosController.edit)
+
 // UPDATE
 // post /todo/:id/update
-// router.post('/:id/update', todosController.update);
+router.put('/:id', todosController.update);
 
 // DELETE
 // post /todo/:id/delete
