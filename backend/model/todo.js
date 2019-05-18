@@ -10,7 +10,7 @@ let TodoSchema = new mongoose.Schema({
     optional: true
   },
   priority: {
-    type: String,
+    type: Number,
     optional: true
   },
   createAt: {

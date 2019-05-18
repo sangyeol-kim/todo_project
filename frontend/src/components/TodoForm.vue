@@ -11,11 +11,11 @@
         </b-field>
       </div>
       <div>
-        <b-field>
+        <b-field class="deadline-field">
           <b-datepicker
             v-model="todo.deadline"
             placeholder="마감기한을 설정하세요."
-            size="is-small"
+            size="is-medium"
             :min-date="minDate">
           </b-datepicker>
         </b-field>
@@ -23,29 +23,29 @@
       <div>
         <div class="block">
           <b-radio v-model="todo.priority"
-              native-value="red"
+              native-value=1
               size="is-medium"
               type="is-danger">
               중요
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="orange"
+              native-value=2
               size="is-medium"
               type="is-warning">
               보통
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="black"
+              native-value=3
               size="is-medium"
               type="is-dark">
               낮음
           </b-radio>
         </div>
       </div>
-      <b-button 
+      <b-button class="create-button"
         v-on:click.prevent="create" 
         type="is-primary">
-        Primary
+        등록하기
       </b-button>
     </form>
 </template>
@@ -97,5 +97,20 @@ export default {
 </script>
 
 <style scope>
+
+form {
+  margin: 3em auto;
+  width: 40em;
+}
+
+.deadline-field {
+  margin: 0.5em auto;
+  width: 20em;
+}
+
+.create-button {
+  margin: 0.5em auto;
+  width: 30em;
+}
 
 </style>

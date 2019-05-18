@@ -32,8 +32,12 @@
 
 <template>
   <div>
+    <div class="top-title">
+      <h1>나만의 To-Do를 관리해보세요! 칰칰</h1>
+    </div>
     <todo-form @create="create"/>
     <div class="wrapper">
+      <hr>
       <b-table 
         :data="todos"
         :paginated="isPaginated"
@@ -42,7 +46,7 @@
         :pagination-simple="isPaginationSimple">
 
         <template slot-scope="props">
-            <b-table-column field="completed" label="완료" sortable>
+            <b-table-column field="completed" label="완료">
                 <b-checkbox 
                   v-model="props.row.done">
                 </b-checkbox>
@@ -55,10 +59,12 @@
                 icon="fas fa-exclamation" 
                 size="is-small">
               </b-icon> -->
-              <b-icon type="is-danger" pack="fas" icon="fas fa-exclamation" size="is-small"></b-icon>
+              <b-icon v-if="props.row.priority===1" type="is-danger" pack="fas" icon="fas fa-exclamation" size="is-small"></b-icon>
+              <b-icon v-else-if="props.row.priority===2" type="is-warning" pack="fas" icon="fas fa-exclamation" size="is-small"></b-icon>
+              <b-icon v-else-if="props.row.priority===3" type="is-dark" pack="fas" icon="fas fa-exclamation" size="is-small"></b-icon>
             </b-table-column>
 
-            <b-table-column centered="true" field="title" label="제목" sortable numeric>
+            <b-table-column centered="true" field="title" label="DO!">
                 <del v-if="props.row.done"><strong>{{props.row.title}}</strong></del>
                 <strong v-else>{{props.row.title}}</strong>
             </b-table-column>
@@ -77,7 +83,7 @@
                 </span>
             </b-table-column>
 
-            <b-table-column centered="true" field="deadline" label="버튼" sortable>
+            <b-table-column centered="true" field="deadline" label="버튼">
               <router-link :to="{ name: 'Edit', params: { id: props.row._id }}">
                 <b-icon class="far fa-edit"></b-icon>
               </router-link>
@@ -88,6 +94,10 @@
             </b-table-column>
         </template>
       </b-table>
+      <hr>
+      <button class="button is-primary" @click="tip">
+          사용법과 팁을 원하신다면 클릭해주세요!
+      </button>
     </div>
   </div>
 </template>
@@ -129,24 +139,54 @@ export default {
       // .catch(e => {
       //   this.errors.push(e)
       // })
-    }
+    },
+    tip() {
+      this.$dialog.alert({
+        title: 'To-do 사용 방법',
+        message: `<ul>
+                    <li> <i class="far fa-hand-holding"></i> 우선순위와 데드라인을 클릭하면 <b>정렬된 결과</b>를 볼 수 있습니다. 기본 정렬은 글을 작성한 날짜 순입니다. </li>
+                    <li> <i class="far fa-hand-holding"></i> 체크박스를 통해 <b>완료한 To-do</b>를 표시할 수 있습니다. </li>
+                    <li> <i class="far fa-hand-holding"></i> 우선순위를 통해 <b>색깔별로 중요도</b>를 선택할 수 있습니다. </li>
+                    <li> <i class="far fa-hand-holding"></i> 데드라인이 초과된 To-do는 <b>무서운</b> 이모티콘과 함께 <b>경고</b>가 표시됩니다. </li> 
+                    <li> <i class="far fa-hand-holding"></i> 수정 버튼을 클릭하면 할 일, 우선순위, <b>데드라인을 변경</b>할 수 있습니다. </li> 
+                    <li> <i class="far fa-hand-holding"></i> 삭제된 글은 복구가 <b>불가능</b>합니다. </li> <br />
+
+                    <i class="far fa-address-card"></i> 개발한 사람: 김상열 <br />
+                    Facebook: <a href="https://www.facebook.com/twysg"  target="_blank">https://www.facebook.com/twysg</a> <br />
+                    github: <a href="https://github.com/sangyeol-kim"  target="_blank">https://github.com/sangyeol-kim</a> <br />
+                    phone: 010-2321-6662 <br /> <br />
+                  </ul>
+
+                  감사합니다. 행복하세요! <i class="far fa-kiss-wink-heart"></i>
+                  `,
+        confirmText: 'Close'
+      })
+    },
   }
 }
 </script>
 
 <style scope>
   .wrapper {
+    font-family: "BMHANNAPro";
     margin-left: 30em;
     margin-right: 30em;
   }
   a {
     color: black;
   }
-  b-table {
-    float:left;
-  }
+
   del {
     color: red;
+  }
+  .top-title {
+    width: 24em;
+    margin-top: 2em;
+    margin-left: 10em;
+    margin-right: 10em;
+    /* font-family: "BMHANNAPro"; */
+    font-size: 2.5em;
+    font-family: 'yg-jalnan';
   }
 
 </style>
