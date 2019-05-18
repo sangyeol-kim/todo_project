@@ -1,46 +1,54 @@
 <template>
-  <div id="todo-edit-form">
-    <h1> 수정하기 </h1>
-    <form @submit.prevent="update(todo._id)">
-      제목 : <input v-model="todo.title"> <br />
-      내용 : <input v-model="todo.content"> <br />
-
-      <section>
+    <form>
+      <div>
+        <b-field>
+          <b-input 
+            v-model="todo.title"
+            value="todo.title"
+            icon="fas fa-list-ul"
+            size="is-large">
+          </b-input>
+        </b-field>
+      </div>
+      <div>
+        <b-field class="deadline-field">
+          <b-datepicker
+            v-model="todo.deadline"
+            size="is-medium"
+            :min-date="minDate">
+          </b-datepicker>
+        </b-field>
+      </div>
+      <div>
         <div class="block">
-          우선순위: 
           <b-radio v-model="todo.priority"
-              native-value="red"
-              size="is-small"
+              native-value=1
+              size="is-medium"
               type="is-danger">
               중요
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="orange"
-              size="is-small"
+              native-value=2
+              size="is-medium"
               type="is-warning">
               보통
           </b-radio>
           <b-radio v-model="todo.priority"
-              native-value="black"
-              size="is-small"
+              native-value=3
+              size="is-medium"
               type="is-dark">
               낮음
           </b-radio>
         </div>
-      </section>
-      <b-field label="마감기한">
-        <b-datepicker
-          v-model="todo.deadline"
-          placeholder="마감기한을 설정하세요."
-          size="is-small"
-          :min-date="minDate">
-        </b-datepicker>
-      </b-field>
-
-      <button>수정하기</button>
+      </div>
+      <b-button class="update-button"
+        v-on:click.prevent="update(todo._id)" 
+        type="is-primary">
+        수정하기
+      </b-button>
     </form>
-  </div>
 </template>
+
 
 <script>
 export default {
@@ -64,7 +72,7 @@ export default {
       this.$http.put(`/api/todos/${id}`, this.todo)
       .then(
         (response) => {
-          this.$router.push(`/todos/${id}`)
+          this.$router.push(`/`)
         },
         (err) => {
           alert('Error')
@@ -76,27 +84,23 @@ export default {
     }
   }
 }
-
-  // methods: {
-  //   deleteTodo (id) {
-  //     const targetIndex = this.todos.findIndex(v => v._id === id)
-  //     this.$http.delete(`/api/todos/${id}`)
-  //     .then((response) => {
-  //       this.todos.splice(targetIndex, 1)
-  //     })
-  //     // .catch(e => {
-  //     //   this.errors.push(e)
-  //     // })
-  //   }
-  // }
 </script>
 
 <style scope>
-  .datepicker {
-    display: inline-block;
+  form {
+  font-family: "BMHANNAPro";
+  margin: 3em auto;
+  width: 40em;
+  }
+
+  .deadline-field {
+    margin: 0.5em auto;
     width: 20em;
   }
-  input {
-    text-align: center;
+
+  .update-button {
+    margin: 0.5em auto;
+    width: 30em;
   }
+
 </style>

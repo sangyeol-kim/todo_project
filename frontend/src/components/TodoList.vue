@@ -33,7 +33,7 @@
 <template>
   <div>
     <div class="top-title">
-      <h1>나만의 To-Do를 관리해보세요! 칰칰</h1>
+      <h1>나만의 To-Do를 관리해보세요!</h1>
     </div>
     <todo-form @create="create"/>
     <div class="wrapper">
@@ -180,7 +180,6 @@ export default {
     color: red;
   }
   .top-title {
-    width: 24em;
     margin-top: 2em;
     margin-left: 10em;
     margin-right: 10em;
