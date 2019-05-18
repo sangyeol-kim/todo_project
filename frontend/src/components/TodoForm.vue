@@ -14,7 +14,7 @@
         <b-field class="deadline-field">
           <b-datepicker
             v-model="todo.deadline"
-            placeholder="마감기한을 설정하세요."
+            placeholder="데드라인을 설정하세요."
             size="is-medium"
             :min-date="minDate">
           </b-datepicker>
