@@ -15,12 +15,6 @@ exports.create = (req, res) => {
     title: req.body.title,
     deadline: req.body.deadline || null,
     priority: req.body.priority || 3
-
-    // let post = new Post({
-    //   title: req.body.title?req.body.title:null,
-    //   content: req.body.content?req.body.content:null,
-    //   deadline: req.body.deadline?req.body.deadline:null,
-    // });
   });
 
   todo.save((err) => {

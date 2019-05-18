@@ -67,7 +67,6 @@ export default {
       .then(
         (response) => {
           this.$emit("create", response.data)
-          // this.$router.push({name: 'Todo', params: { id: response.data._id }})
         },
         (err) => {
           alert('Error')
@@ -77,21 +76,6 @@ export default {
         alert('error')
       })
     }
-
-
-  // methods: {
-  //   deleteTodo (id) {
-  //     const targetIndex = this.todos.findIndex(v => v._id === id)
-  //     this.$http.delete(`/api/todos/${id}`)
-  //     .then((response) => {
-  //       this.todos.splice(targetIndex, 1)
-  //     })
-  //     // .catch(e => {
-  //     //   this.errors.push(e)
-  //     // })
-  //   }
-  // }
-
   }
 }
 </script>
