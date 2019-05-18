@@ -76,7 +76,7 @@ export default {
       isPaginated: true,
       isPaginationSimple: false,
       currentPage: 1,
-      perPage: 8
+      perPage: 7
     }
   },
   created () {
@@ -142,7 +142,7 @@ export default {
     color: red;
   }
   .top-title {
-    margin-top: 2em;
+    margin-top: 1em;
     margin-left: 10em;
     margin-right: 10em;
     /* font-family: "BMHANNAPro"; */
