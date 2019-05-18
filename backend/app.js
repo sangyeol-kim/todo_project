@@ -13,7 +13,7 @@ const app = express();
 
 connect(); // DB 실행
 
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 3000);
 
 app.use(history());
 app.use(express.json());
