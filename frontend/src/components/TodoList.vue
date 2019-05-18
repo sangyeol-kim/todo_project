@@ -31,54 +31,65 @@
 -->
 
 <template>
+  <div>
+    <todo-form @create="create"/>
     <div class="wrapper">
-        <b-table :data="todos">
+      <b-table 
+        :data="todos"
+        :paginated="isPaginated"
+        :per-page="perPage"
+        :current-page.sync="currentPage"
+        :pagination-simple="isPaginationSimple">
 
-            <template slot-scope="props">
-                <b-table-column field="completed" label="완료">
-                    <b-checkbox 
-                      v-model="props.row.done">
-                    </b-checkbox>
-                </b-table-column>
+        <template slot-scope="props">
+            <b-table-column field="completed" label="완료" sortable>
+                <b-checkbox 
+                  v-model="props.row.done">
+                </b-checkbox>
+            </b-table-column>
 
-                <b-table-column field="priority" label="우선순위">
-                  <b-icon 
-                    v-bind:style="{color : props.row.priority}" 
-                    pack="fas" 
-                    icon="fas fa-exclamation" 
-                    size="is-small">
-                  </b-icon>
-                </b-table-column>
+            <b-table-column centered="true" field="priority" label="우선순위" sortable>
+              <!-- <b-icon 
+                v-bind:style="{color : props.row.priority}" 
+                pack="fas" 
+                icon="fas fa-exclamation" 
+                size="is-small">
+              </b-icon> -->
+              <b-icon type="is-danger" pack="fas" icon="fas fa-exclamation" size="is-small"></b-icon>
+            </b-table-column>
 
-                <b-table-column field="title" label="제목">
-                    <del v-if="props.row.done"><strong>{{props.row.title}}</strong></del>
-                    <strong v-else>{{props.row.title}}</strong>
-                </b-table-column>
+            <b-table-column centered="true" field="title" label="제목" sortable numeric>
+                <del v-if="props.row.done"><strong>{{props.row.title}}</strong></del>
+                <strong v-else>{{props.row.title}}</strong>
+            </b-table-column>
 
-                <b-table-column field="deadline" label="데드라인">
-                    <span 
-                      v-if="(moment(today).format('YYYY-MM-DD') > moment(props.row.deadline).format('YYYY-MM-DD'))">
-                      데드라인 초과
-                    </span>
-                    <span v-else>
-                      {{moment(props.row.deadline).format('YYYY-MM-DD')}}
-                    </span>
-                </b-table-column>
+            <b-table-column centered="true" field="deadline" label="데드라인" sortable>
+                <span v-if="props.row.deadline === null">데드라인 없음</span>
+                <span 
+                  v-else-if="(moment(today).format('YYYY-MM-DD') > moment(props.row.deadline).format('YYYY-MM-DD'))">
+                  <b-icon
+                    class="fas fa-dizzy"
+                    type="is-danger">
+                  </b-icon> 마감!!
+                </span>
+                <span v-else>
+                  {{moment(props.row.deadline).format('YYYY-MM-DD')}}
+                </span>
+            </b-table-column>
 
-                <!-- <b-table-column field="deadline" label="데드라인">
-                  <button @click="$router.push(`/todos/${props.row._id}`)">자세히</button>
-                </b-table-column> -->
-
-                <b-table-column field="deadline" label="데드라인">
-                  <b-button @click="$router.push(`/todos/edit/${props.row._id}`)">수정</b-button>
-                </b-table-column>
-
-                <b-table-column field="deadline" label="데드라인">
-                  <b-button @click="deleteTodo(props.row._id)">삭제</b-button>
-                </b-table-column>
-            </template>
-        </b-table>
+            <b-table-column centered="true" field="deadline" label="버튼" sortable>
+              <router-link :to="{ name: 'Todo', params: { id: props.row._id }}">
+                <b-icon class="far fa-edit"></b-icon>
+              </router-link>
+              <b-icon
+                class="far fa-trash-alt"
+                @click.native="deleteTodo(props.row._id)">
+                </b-icon>
+            </b-table-column>
+        </template>
+      </b-table>
     </div>
+  </div>
 </template>
 
 <script>
@@ -90,7 +101,10 @@ export default {
     return {
       todos: {},
       today: new Date(),
-      columns: [{}, {}, {}, {}, {}, {}]
+      isPaginated: true,
+      isPaginationSimple: false,
+      currentPage: 1,
+      perPage: 8
     }
   },
   created () {
@@ -134,4 +148,5 @@ export default {
   del {
     color: red;
   }
+
 </style>

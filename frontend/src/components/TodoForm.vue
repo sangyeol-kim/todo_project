@@ -1,5 +1,4 @@
 <template>
-  <div id="todo-form">
     <form>
       <div>
         <b-field>
@@ -49,7 +48,6 @@
         Primary
       </b-button>
     </form>
-  </div>
 </template>
 
 <script>
@@ -65,9 +63,6 @@ export default {
   },
   methods: {
     create: function() {
-      if (!this.todo.priority) {
-        this.todo.priority = 'null'
-      }
       this.$http.post('/api/todos/create', this.todo)
       .then(
         (response) => {
@@ -102,19 +97,5 @@ export default {
 </script>
 
 <style scope>
-  .datepicker {
-    display: inline-block;
-    width: 30em;
-    margin-bottom: 1em;
-  }
-  .field {
-    display: inline-block;
-    width: 30em;
-  }
-  input {
-    text-align: left;
-  }
-  .button {
-    width: 20em;
-  }
+
 </style>

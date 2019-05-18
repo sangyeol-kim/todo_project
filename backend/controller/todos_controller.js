@@ -12,9 +12,15 @@ exports.index = (req, res) => {
 exports.create = (req, res) => {
   console.log(req.body)
   let todo = new Todo({
-    title: req.body.title || req.body.todo.title,
-    deadline: req.body.deadline || req.body.todo.deadline,
-    priority: req.body.priority || req.body.todo.priority,
+    title: req.body.title,
+    deadline: req.body.deadline || null,
+    priority: req.body.priority || 'black'
+
+    // let post = new Post({
+    //   title: req.body.title?req.body.title:null,
+    //   content: req.body.content?req.body.content:null,
+    //   deadline: req.body.deadline?req.body.deadline:null,
+    // });
   });
 
   todo.save((err) => {
