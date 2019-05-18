@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Todos from '@/components/TodoList'
 import Todo from '@/components/TodoShow'
 import Edit from '@/components/TodoEditForm'
+import E404 from '../views/e404'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/todos/:id',
       name: 'Todo',
       component: Todo
+    },
+    {
+      path: '*',
+      name: 'e404',
+      component: E404
     }
   ]
 });

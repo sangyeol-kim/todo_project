@@ -15,10 +15,10 @@ connect(); // DB 실행
 
 app.set('port', process.env.PORT || 8001);
 
-app.use(express.static('public')); 
 app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static('public')); 
 
 app.use('/api/todos', todoRouter);
 app.use('/', indexRouter);
