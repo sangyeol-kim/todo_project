@@ -78,7 +78,7 @@
             </b-table-column>
 
             <b-table-column centered="true" field="deadline" label="버튼" sortable>
-              <router-link :to="{ name: 'Todo', params: { id: props.row._id }}">
+              <router-link :to="{ name: 'Edit', params: { id: props.row._id }}">
                 <b-icon class="far fa-edit"></b-icon>
               </router-link>
               <b-icon
