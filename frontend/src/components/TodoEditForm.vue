@@ -18,7 +18,7 @@
         <b-field class="deadline-field">
           <b-datepicker
             v-model="todo.deadline"
-            open-on-focus="false"
+            icon="far fa-calendar-alt"
             size="is-medium"
             :min-date="minDate">
           </b-datepicker>

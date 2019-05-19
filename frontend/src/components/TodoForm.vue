@@ -19,6 +19,7 @@
           <b-datepicker
             v-model="todo.deadline"
             placeholder="데드라인을 설정하세요."
+            icon="far fa-calendar-alt"
             size="is-medium"
             :min-date="minDate">
           </b-datepicker>
