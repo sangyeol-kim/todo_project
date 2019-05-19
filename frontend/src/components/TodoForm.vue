@@ -1,5 +1,7 @@
 <template>
-    <form>
+    <!-- 글 생성하는 폼 -->
+    <form class="create-form">
+      <!-- To-do title field -->
       <div>
         <b-field>
           <b-input 
@@ -11,6 +13,7 @@
           </b-input>
         </b-field>
       </div>
+      <!-- To-do deadline field -->
       <div>
         <b-field class="deadline-field">
           <b-datepicker
@@ -21,6 +24,7 @@
           </b-datepicker>
         </b-field>
       </div>
+      <!-- To-do priority field -->
       <div>
         <div class="block">
           <b-radio v-model="todo.priority"
@@ -43,6 +47,7 @@
           </b-radio>
         </div>
       </div>
+      <!-- Create button -->
       <b-button class="create-button"
         v-on:click.prevent="create"
         type="is-primary">
@@ -55,6 +60,7 @@
 
 export default {
   data: function () {
+    // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
     return {
       todo: {},
@@ -63,6 +69,7 @@ export default {
     }
   },
   methods: {
+    // Create button을 클릭했을 때 호출되는 api
     create: function() {
       this.$http.post('/api/todos/create', this.todo)
       .then(
@@ -75,6 +82,7 @@ export default {
           alert('To-do를 입력해주세요!')
       })
     },
+    // Create 이후 Form State를 Reset하는 코드
     resetField () {
       this.todo.title = "";
     },
@@ -84,7 +92,7 @@ export default {
 
 <style scope>
 
-form {
+.create-form {
   margin: 3em auto;
   width: 40em;
 }

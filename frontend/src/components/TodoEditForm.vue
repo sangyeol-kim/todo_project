@@ -1,6 +1,8 @@
 <template>
-  <form>
+  <!-- 글 수정하는 폼 -->
+  <form class="edit-form">
     <h1 class="h1-top-title">등록된 To-do를 수정해보세요!</h1>
+    <!-- To-do title edit field -->
     <div>
       <b-field>
         <b-input 
@@ -11,6 +13,7 @@
         </b-input>
       </b-field>
     </div>
+    <!-- To-do deadline edit field -->
     <div>
       <b-field class="deadline-field">
         <b-datepicker
@@ -20,6 +23,7 @@
         </b-datepicker>
       </b-field>
     </div>
+    <!-- To-do priority edit field -->
     <div>
       <div class="block">
         <b-radio v-model="todo.priority"
@@ -42,13 +46,14 @@
         </b-radio>
       </div>
     </div>
+    <!-- Update button -->
     <b-button class="update-button"
       v-on:click.prevent="update(todo._id)" 
       type="is-primary">
       수정하기
     </b-button>
     <br />
-
+    <!-- To-do List로 이동하는 버튼 -->
     <router-link :to="{ name: 'Todos'}" class="back-button">
       <b-button
         type="is-primary">
@@ -62,6 +67,7 @@
 <script>
 export default {
   data: function () {
+    // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
     return {
       todo: {},
@@ -69,6 +75,7 @@ export default {
       minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
     }
   },
+  // 수정을 원하는 To-do의 정보를 가져오는 api
   created () {
     let id = this.$route.params.id
     this.$http.get(`/api/todos/edit/${id}`)
@@ -81,6 +88,7 @@ export default {
     })
   },
   methods: {
+    // Update button을 클릭했을 때 호출되는 api
     update (id) {
       this.$http.put(`/api/todos/${id}`, this.todo)
       .then(
@@ -98,9 +106,9 @@ export default {
 </script>
 
 <style scope>
-  form {
+  .edit-form {
   font-family: "BMHANNAPro";
-  margin: 20em auto;
+  margin: 15em auto;
   width: 40em;
   }
 
@@ -120,7 +128,7 @@ export default {
   }
 
   .h1-top-title {
-    /* font-family: "BMHANNAPro"; */
+    margin-bottom: 1em;
     font-size: 2.5em;
     font-family: 'yg-jalnan';
   }
