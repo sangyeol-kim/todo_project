@@ -7,8 +7,8 @@ module.exports = () => {
       mongoose.set("debug", true);
     }
     mongoose.connect(
-      "mongodb://localhost:27017/TodoDB",
-      { auth: { authSource: "admin" }, user: "admin", pass: "gpdlzjadhs1" },
+      process.env.MONGO_URI,
+      { user: process.env.MONGO_USER, pass: process.env.MONGO_PASS },
       error => {
         if (error) {
           console.log("몽고디비 연결 에러", error);

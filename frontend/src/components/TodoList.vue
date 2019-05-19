@@ -38,14 +38,14 @@
             <!-- 현재 Date와 비교하여 데드라인이 지난 To-do를 표시 -->
             <span v-if="props.row.deadline === null">데드라인 없음</span>
             <span 
-              v-else-if="(moment(today).format('YYYY-MM-DD') > moment(props.row.deadline).format('YYYY-MM-DD'))">
+              v-else-if="(moment(today) > moment(props.row.deadline))">
               <b-icon
                 class="fas fa-dizzy"
                 type="is-danger">
               </b-icon> 마감!!
             </span>
             <span v-else>
-              {{moment(props.row.deadline).format('YYYY-MM-DD')}}
+              {{moment(props.row.deadline)}}
             </span>
           </b-table-column>
           <!-- 수정, 삭제 버튼 -->
@@ -119,6 +119,10 @@ export default {
         console.error(err)
         alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
       })
+    },
+    // Module Dependency를 줄이기 위해서 Vue.prototype이 아닌 method로 작성.
+    moment (day) {
+      return moment(day).format('YYYY-MM-DD');
     }
   }
 }

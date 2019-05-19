@@ -4,7 +4,7 @@ const path = require('path');
 const history = require('connect-history-api-fallback');
 require('dotenv').config();
 
-var connect = require('./model');
+const connect = require('./model');
 
 const indexRouter = require('./routes/index');
 const todoRouter = require('./routes/todo');
