@@ -68,6 +68,8 @@
 <script>
 import moment from 'moment'
 import axios from 'axios'
+import { Snackbar } from 'buefy/dist/components/snackbar'
+
 import TodoForm from './TodoForm';
 
 export default {
@@ -89,7 +91,7 @@ export default {
     },
     (err) => {
       console.error(err)
-      alert('페이지 로딩에 실패하였습니다.')
+      this.warning('To-do를 가져오는데 실패했습니다. 다시 시도해주세요!')
     })
   },
   components: {
@@ -109,7 +111,7 @@ export default {
       },
       (err) => {
         console.error(err)
-        alert('삭제에 실패했습니다. 다시 시도해주세요.')
+        this.warning('삭제에 실패했습니다. 다시 시도해주세요!')
       })
     },
     // Complete Checkbox를 클릭했을 때 호출되는 api
@@ -117,13 +119,21 @@ export default {
       axios.put(`/api/todos/complete/${id}`)
       .catch(err => {
         console.error(err)
-        alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
+        this.warning('완료 체크에 실패했습니다. 다시 시도해주세요!')
       })
     },
     // Module Dependency를 줄이기 위해서 Vue.prototype이 아닌 method로 작성.
     moment (day) {
       return moment(day).format('YYYY-MM-DD');
-    }
+    },
+    warning(messages) {
+      this.$snackbar.open({
+        duration: 2000,
+        message: `${messages}`,
+        type: 'is-warning',
+        position: 'is-top',
+      })
+    },
   }
 }
 </script>

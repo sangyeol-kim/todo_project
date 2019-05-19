@@ -7,7 +7,6 @@
       <b-field>
         <b-input 
           v-model="todo.title"
-          value="todo.title"
           icon="fas fa-list-ul"
           size="is-large">
         </b-input>
@@ -67,6 +66,8 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
+import { Snackbar } from 'buefy/dist/components/snackbar'
 
 export default {
   data () {
@@ -87,7 +88,7 @@ export default {
     },
     (err) => {
       console.error(err)
-      alert('수정된 페이지를 불러오는데 실패했습니다.')
+      this.warning('To-do를 불러오는데 실패했습니다. 다시 시도해주세요!')
     })
   },
   methods: {
@@ -100,10 +101,21 @@ export default {
         },
         (err) => {
           console.error(err)
-          alert('수정에 실패했습니다.')
+          this.warning('수정에 실패했습니다. 다시 시도해주세요!')
         }
       )
-    }
+    },
+    moment (day) {
+      return moment(day).format('YYYY-MM-DD');
+    },
+    warning(messages) {
+      this.$snackbar.open({
+        duration: 2000,
+        message: `${messages}`,
+        type: 'is-warning',
+        position: 'is-top',
+      })
+    },
   }
 }
 </script>

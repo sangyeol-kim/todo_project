@@ -57,6 +57,7 @@
 
 <script>
 import axios from 'axios'
+import { Snackbar } from 'buefy/dist/components/snackbar'
 
 export default {
   data () {
@@ -79,7 +80,7 @@ export default {
         },
         (err) => {
           console.error(err)
-          alert('To-do를 입력해주세요!')
+          this.warning('할 일를 입력해주세요!')
       })
     },
     // Create 이후 Form State를 Reset하는 코드
@@ -87,6 +88,14 @@ export default {
       this.todo.title = ""
       this.todo.priority = ""
       this.todo.deadline = ""
+    },
+    warning(messages) {
+      this.$snackbar.open({
+        duration: 2000,
+        message: `${messages}`,
+        type: 'is-warning',
+        position: 'is-top',
+      })
     },
   }
 }
