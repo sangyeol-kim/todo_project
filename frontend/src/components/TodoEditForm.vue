@@ -1,66 +1,69 @@
 <template>
   <!-- 글 수정하는 폼 -->
-  <form class="edit-form">
-    <h1 class="h1-top-title">등록된 To-do를 수정해보세요!</h1>
-    <!-- To-do title edit field -->
-    <div>
-      <b-field>
-        <b-input 
-          v-model="todo.title"
-          icon="fas fa-list-ul"
-          size="is-large">
-        </b-input>
-      </b-field>
-    </div>
-    <!-- To-do deadline edit field -->
-    <div>
-      <b-field class="deadline-field">
-        <b-datepicker
-          v-model="todo.deadline"
-          open-on-focus="false"
-          size="is-medium"
-          :min-date="minDate">
-        </b-datepicker>
-      </b-field>
-    </div>
-    <!-- To-do priority edit field -->
-    <div>
-      <div class="block">
-        <b-radio v-model="todo.priority"
-            native-value=1
-            size="is-medium"
-            type="is-danger">
-            중요
-        </b-radio>
-        <b-radio v-model="todo.priority"
-            native-value=2
-            size="is-medium"
-            type="is-warning">
-            보통
-        </b-radio>
-        <b-radio v-model="todo.priority"
-            native-value=3
-            size="is-medium"
-            type="is-dark">
-            낮음
-        </b-radio>
+  <div class="container">
+    <div class="edit-title">등록된 To-do를 수정해보세요!</div>
+    <form class="edit-form">
+      <!-- To-do title edit field -->
+      <div>
+        <b-field class="title-field">
+          <b-input 
+            v-model="todo.title"
+            icon="fas fa-list-ul"
+            size="is-large">
+          </b-input>
+        </b-field>
       </div>
-    </div>
-    <!-- Update button -->
-    <b-button class="update-button"
-      v-on:click.prevent="update(todo._id)" 
-      type="is-primary">
-      수정하기
-    </b-button>
-    <br />
-    <!-- To-do List로 이동하는 버튼 -->
-    <router-link :to="{ name: 'Todos'}" class="back-button">
-      <b-button
-        type="is-primary">
-        뒤로 가기
-      </b-button>
-    </router-link>
-  </form>
+      <!-- To-do deadline edit field -->
+      <div>
+        <b-field class="deadline-field">
+          <b-datepicker
+            v-model="todo.deadline"
+            open-on-focus="false"
+            size="is-medium"
+            :min-date="minDate">
+          </b-datepicker>
+        </b-field>
+      </div>
+      <!-- To-do priority edit field -->
+      <div class="priority-group">
+        <div class="block">
+          <b-radio v-model="todo.priority"
+              native-value=1
+              size="is-medium"
+              type="is-danger">
+              중요
+          </b-radio>
+          <b-radio v-model="todo.priority"
+              native-value=2
+              size="is-medium"
+              type="is-warning">
+              보통
+          </b-radio>
+          <b-radio v-model="todo.priority"
+              native-value=3
+              size="is-medium"
+              type="is-dark">
+              낮음
+          </b-radio>
+        </div>
+      </div>
+      <!-- Update button -->
+      <div class="button-group">
+        <b-button class="update-button"
+          v-on:click.prevent="update(todo._id)" 
+          type="is-primary">
+          <strong>수정하기</strong>
+        </b-button>
+        <!-- To-do List로 이동하는 버튼 -->
+        <router-link :to="{ name: 'Todos'}" class="back-button">
+          <b-button
+            type="is-primary">
+            <strong>뒤로 가기</strong>
+          </b-button>
+        </router-link>
+      </div>
+    </form>
+  </div>
 </template>
 
 
@@ -121,31 +124,32 @@ export default {
 </script>
 
 <style scope>
-  .edit-form {
-  font-family: "BMHANNAPro";
-  margin: 15em auto;
-  width: 40em;
-  }
 
-  .deadline-field {
-    margin: 0.5em auto;
-    width: 20em;
-  }
-
-  .update-button {
-    margin: 0.5em auto;
-    width: 30em;
-  }
-
-  .back-button {
-    margin: 0.5em auto;
-    width: 30em;
-  }
-
-  .h1-top-title {
+  .edit-title {
+    margin-top: 6em;
     margin-bottom: 1em;
     font-size: 2.5em;
     font-family: 'yg-jalnan';
+  }
+  .edit-form {
+    font-family: "BMHANNAPro";
+  }
+  .title-field {
+    margin: 0 auto;
+    width: 40em;
+  }
+  .deadline-field {
+    margin: 0 auto;
+    width: 23em;
+  }
+  .priority-group {
+    margin-top: 0.5em;
+  }
+  .button-group {
+    margin-top: 1em;
+  }
+  .update-button {
+    width: 5em;
   }
 
 </style>

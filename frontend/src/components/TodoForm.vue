@@ -5,6 +5,7 @@
       <div>
         <b-field>
           <b-input 
+            class="title-field"
             v-model="todo.title"
             placeholder="할 일을 작성해주세요."
             icon="fas fa-list-ul"
@@ -24,7 +25,7 @@
         </b-field>
       </div>
       <!-- To-do priority field -->
-      <div>
+      <div class="priority-group">
         <div class="block">
           <b-radio v-model="todo.priority"
               native-value=1
@@ -50,7 +51,7 @@
       <b-button class="create-button"
         v-on:click.prevent="create"
         type="is-primary">
-        등록하기
+        <strong>등록하기</strong>
       </b-button>
     </form>
 </template>
@@ -80,7 +81,7 @@ export default {
         },
         (err) => {
           console.error(err)
-          this.warning('할 일를 입력해주세요!')
+          this.warning('할 일을 입력해주세요!')
       })
     },
     // Create 이후 Form State를 Reset하는 코드
@@ -103,19 +104,23 @@ export default {
 
 <style scope>
 
-.create-form {
-  margin: 3em auto;
+.title-field {
+  margin: 0 auto;
   width: 40em;
 }
 
 .deadline-field {
-  margin: 0.5em auto;
-  width: 20em;
+  margin: 0 auto;
+  width: 23em;
+}
+
+.priority-group {
+  margin-top: 0.5em;
 }
 
 .create-button {
-  margin: 0.5em auto;
-  width: 30em;
+  margin: 0 auto;
+  width: 15em;
 }
 
 </style>
