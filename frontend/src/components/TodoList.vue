@@ -114,28 +114,6 @@ export default {
         alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
       })
     }
-    // tip() {
-    //   this.$dialog.alert({
-    //     title: 'To-do 사용 방법',
-    //     message: `<ul>
-    //                 <li> <i class="far fa-hand-holding"></i> 우선순위와 데드라인을 클릭하면 <b>정렬된 결과</b>를 볼 수 있습니다. 기본 정렬은 글을 작성한 날짜 순입니다. </li>
-    //                 <li> <i class="far fa-hand-holding"></i> 체크박스를 통해 <b>완료한 To-do</b>를 표시할 수 있습니다. </li>
-    //                 <li> <i class="far fa-hand-holding"></i> 우선순위를 통해 <b>색깔별로 중요도</b>를 선택할 수 있습니다. </li>
-    //                 <li> <i class="far fa-hand-holding"></i> 데드라인이 초과된 To-do는 <b>무서운</b> 이모티콘과 함께 <b>경고</b>가 표시됩니다. </li> 
-    //                 <li> <i class="far fa-hand-holding"></i> 수정 버튼을 클릭하면 할 일, 우선순위, <b>데드라인을 변경</b>할 수 있습니다. </li> 
-    //                 <li> <i class="far fa-hand-holding"></i> 삭제된 글은 복구가 <b>불가능</b>합니다. </li> <br />
-
-    //                 <i class="far fa-address-card"></i> 개발한 사람: 김상열 <br />
-    //                 Facebook: <a href="https://www.facebook.com/twysg"  target="_blank">https://www.facebook.com/twysg</a> <br />
-    //                 github: <a href="https://github.com/sangyeol-kim"  target="_blank">https://github.com/sangyeol-kim</a> <br />
-    //                 phone: 010-2321-6662 <br /> <br />
-    //               </ul>
-
-    //               감사합니다. 행복하세요! <i class="far fa-kiss-wink-heart"></i>
-    //               `,
-    //     confirmText: 'Close'
-    //   })
-    // },
   }
 }
 </script>
