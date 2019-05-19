@@ -14,7 +14,7 @@
         :pagination-simple="isPaginationSimple">
 
         <template slot-scope="props">
-            <b-table-column field="completed" label="완료">
+            <b-table-column centered="true" field="completed" label="완료">
                 <!-- <b-checkbox 
                   v-model="props.row.complete"
                   v-on:click="completed(props_row._id)">
@@ -87,6 +87,9 @@ export default {
     this.$http.get('/api/todos')
     .then((response) => {
       this.todos = response.data
+    },
+    (err) => {
+      alert('페이지 로딩에 실패하였습니다.')
     })
   },
   components: {
@@ -103,16 +106,13 @@ export default {
         this.todos.splice(targetIndex, 1)
       },
       (err) => {
-        alert('삭제 에러')
+        alert('삭제에 실패했습니다. 다시 시도해주세요.')
       })
     },
     completed (id) {
       this.$http.put(`/api/todos/complete/${id}`)
-      .then((response) =>{
-        this.$router.push('/')
-      },
-      (err) => {
-        alert('then error')
+      .catch(err => {
+        alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
       })
     }
     // tip() {

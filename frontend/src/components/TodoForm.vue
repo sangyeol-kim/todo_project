@@ -68,14 +68,14 @@ export default {
       .then(
         (response) => {
           this.$emit("create", response.data)
-          this.resetFields()
+          this.resetField()
         },
         (err) => {
           alert('To-do를 입력해주세요!')
         }
       )
     },
-    resetFields () {
+    resetField () {
       this.todo.title = "";
     },
   }
