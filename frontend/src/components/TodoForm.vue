@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   data: function () {
@@ -71,7 +72,7 @@ export default {
   methods: {
     // Create button을 클릭했을 때 호출되는 api
     create: function() {
-      this.$http.post('/api/todos/create', this.todo)
+      axios.post('/api/todos/create', this.todo)
       .then(
         (response) => {
           this.$emit("create", response.data)

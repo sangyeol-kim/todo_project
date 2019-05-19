@@ -65,6 +65,8 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
   data: function () {
     // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
@@ -78,7 +80,7 @@ export default {
   // 수정을 원하는 To-do의 정보를 가져오는 api
   created () {
     let id = this.$route.params.id
-    this.$http.get(`/api/todos/edit/${id}`)
+    axios.get(`/api/todos/edit/${id}`)
     .then((response) => {
       this.todo = response.data
     },
@@ -90,7 +92,7 @@ export default {
   methods: {
     // Update button을 클릭했을 때 호출되는 api
     update (id) {
-      this.$http.put(`/api/todos/${id}`, this.todo)
+      axios.put(`/api/todos/${id}`, this.todo)
       .then(
         (response) => {
           this.$router.push('/')

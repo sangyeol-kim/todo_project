@@ -67,6 +67,7 @@
 
 <script>
 import moment from 'moment'
+import axios from 'axios'
 import TodoForm from './TodoForm';
 
 export default {
@@ -82,7 +83,7 @@ export default {
   },
   created () {
     // 모든 To-do 가져오는 코드
-    this.$http.get('/api/todos')
+    axios.get('/api/todos')
     .then((response) => {
       this.todos = response.data
     },
@@ -102,7 +103,7 @@ export default {
     // 삭제 버튼을 클릭했을 때 api 호출 이후 Todos List State를 변경하는 코드
     deleteTodo (id) {
       const targetIndex = this.todos.findIndex(v => v._id === id)
-      this.$http.delete(`/api/todos/${id}`)
+      axios.delete(`/api/todos/${id}`)
       .then((response) => {
         this.todos.splice(targetIndex, 1)
       },
@@ -113,7 +114,7 @@ export default {
     },
     // Complete Checkbox를 클릭했을 때 호출되는 api
     completed (id) {
-      this.$http.put(`/api/todos/complete/${id}`)
+      axios.put(`/api/todos/complete/${id}`)
       .catch(err => {
         console.error(err)
         alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
