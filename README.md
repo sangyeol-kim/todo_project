@@ -124,8 +124,7 @@ MONGO_PASS = "dev_pass"
 **11. PM2 설치 및 실행**
 
 일반적으로 node.js 어플리케이션을 구동하기 위해서 개발 환경에서는 nodemon 또는 node app.js 명령어를 통해 서버를 실행합니다.  
-PM2는 에러가 발생했을 때 노드 서버가 강제로 다운되는 현상이 일어났을 때 자동으로 서버를 재 실행해주고, 데몬으로 동작하는 등의 장점을 가지고 있기 때문에 배포 환경에서 많이 사용됩니다. 그 외의 자세한 설명은 다음 링크를 참고해주세요.  
-[PM2 자세히 보기](https://www.npmjs.com/package/pm2)
+PM2는 에러가 발생했을 때 노드 서버가 강제로 다운되는 현상이 일어났을 때 자동으로 서버를 재 실행해주고, 데몬으로 동작하는 등의 장점을 가지고 있기 때문에 배포 환경에서 많이 사용됩니다. 그 외의 자세한 설명은 다음 링크를 참고해주세요. [PM2 자세히 보기](https://www.npmjs.com/package/pm2)
 
 ```
 $ sudo npm i pm2 -g
@@ -161,8 +160,8 @@ localhost://3000으로 접속하면 배포한 SPA를 확인할 수 있습니다.
 제출물
 
 - [x] 소스 코드가 담긴 github URL
-  - [Project Repogitory](https://github.com/sangyeol-kim/todo_project)
-- [x] 접속하여 테스트 가능한 URL ()
+  - [Project Repository](https://github.com/sangyeol-kim/todo_project)
+- [x] 접속하여 테스트 가능한 URL
   - [Demo Application on AWS](http://54.180.97.56:3000/)
 
 ## 개선사항
