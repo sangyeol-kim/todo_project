@@ -6,7 +6,6 @@
         <b-field>
           <b-input 
             v-model="todo.title"
-            v-validate="required"
             placeholder="할 일을 작성해주세요."
             icon="fas fa-list-ul"
             size="is-large">
@@ -85,7 +84,8 @@ export default {
     },
     // Create 이후 Form State를 Reset하는 코드
     resetField () {
-      this.todo.title = "";
+      this.todo.title = ""
+      this.todo.priority = ""
     },
   }
 }
