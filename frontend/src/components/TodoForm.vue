@@ -59,7 +59,7 @@
 import axios from 'axios'
 
 export default {
-  data: function () {
+  data () {
     // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
     return {
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     // Create button을 클릭했을 때 호출되는 api
-    create: function() {
+    create () {
       axios.post('/api/todos/create', this.todo)
       .then(
         (response) => {
@@ -86,6 +86,7 @@ export default {
     resetField () {
       this.todo.title = ""
       this.todo.priority = ""
+      this.todo.deadline = ""
     },
   }
 }

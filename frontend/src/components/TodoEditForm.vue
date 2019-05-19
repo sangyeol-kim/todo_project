@@ -18,6 +18,7 @@
       <b-field class="deadline-field">
         <b-datepicker
           v-model="todo.deadline"
+          open-on-focus="false"
           size="is-medium"
           :min-date="minDate">
         </b-datepicker>
@@ -68,7 +69,7 @@
 import axios from 'axios'
 
 export default {
-  data: function () {
+  data () {
     // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
     return {
