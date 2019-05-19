@@ -25,15 +25,6 @@ exports.create = (req, res, next) => {
   });
 };
 
-exports.show = (req, res, next) => {
-  Todo.findById(req.params.id, (err, todo) => {
-    if (err) {
-      return next(err)
-    }
-    res.json(todo);
-  });
-};
-
 exports.edit = (req, res, next) => {
   Todo.findById(req.params.id, (err, todo) => {
     if (err) {

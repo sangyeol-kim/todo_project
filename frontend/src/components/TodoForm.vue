@@ -71,9 +71,9 @@ export default {
           this.resetField()
         },
         (err) => {
+          console.error(err)
           alert('To-do를 입력해주세요!')
-        }
-      )
+      })
     },
     resetField () {
       this.todo.title = "";

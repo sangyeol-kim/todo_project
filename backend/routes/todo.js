@@ -7,12 +7,6 @@ const todosController = require('../controller/todos_controller');
 // get /todos
 router.get('/', todosController.index)
 
-// READ
-// get /todos/:id
-router.get('/:id', todosController.show);
-
-router.put('/complete/:id', todosController.complete);
-
 // CREATE
 // post /todos/create
 router.post('/create', todosController.create);
@@ -26,7 +20,11 @@ router.get('/edit/:id', todosController.edit)
 router.put('/:id', todosController.update);
 
 // DELETE
-// delete /todo/:id/
+// delete /todo/:id
 router.delete('/:id', todosController.delete);
+
+// Complete Check
+// put /todo/complete/:id
+router.put('/complete/:id', todosController.complete);
 
 module.exports = router;

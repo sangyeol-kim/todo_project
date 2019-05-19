@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 // import New from '@/components/TodoForm'
 import Todos from '@/components/TodoList'
-import Todo from '@/components/TodoShow'
 import Edit from '@/components/TodoEditForm'
 import E404 from '../views/e404'
 import Buefy from 'buefy'
@@ -22,20 +21,10 @@ export default new Router({
       name: 'Todos',
       component: Todos
     },
-    // {
-    //   path: '/todos/new',
-    //   name: 'New',
-    //   component: New
-    // },
     {
       path: '/todos/edit/:id',
       name: 'Edit',
       component: Edit
-    },
-    {
-      path: '/todos/:id',
-      name: 'Todo',
-      component: Todo
     },
     {
       path: '*',

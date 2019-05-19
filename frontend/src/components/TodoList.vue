@@ -15,13 +15,9 @@
 
         <template slot-scope="props">
             <b-table-column centered="true" field="completed" label="완료">
-                <!-- <b-checkbox 
-                  v-model="props.row.complete"
-                  v-on:click="completed(props_row._id)">
-                </b-checkbox> -->
-                <input type="checkbox" 
-                  v-model="props.row.complete" 
-                  @change="completed(props.row._id)">
+              <input type="checkbox" 
+                v-model="props.row.complete" 
+                @change="completed(props.row._id)">
             </b-table-column>
 
             <b-table-column centered="true" field="priority" label="우선순위" sortable>
@@ -89,6 +85,7 @@ export default {
       this.todos = response.data
     },
     (err) => {
+      console.error(err)
       alert('페이지 로딩에 실패하였습니다.')
     })
   },
@@ -106,12 +103,14 @@ export default {
         this.todos.splice(targetIndex, 1)
       },
       (err) => {
+        console.error(err)
         alert('삭제에 실패했습니다. 다시 시도해주세요.')
       })
     },
     completed (id) {
       this.$http.put(`/api/todos/complete/${id}`)
       .catch(err => {
+        console.error(err)
         alert('완료 체크에 실패했습니다. 다시 시도해주세요.')
       })
     }

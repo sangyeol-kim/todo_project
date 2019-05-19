@@ -74,6 +74,10 @@ export default {
     this.$http.get(`/api/todos/edit/${id}`)
     .then((response) => {
       this.todo = response.data
+    },
+    (err) => {
+      console.error(err)
+      alert('수정된 페이지를 불러오는데 실패했습니다.')
     })
   },
   methods: {
@@ -84,12 +88,10 @@ export default {
           this.$router.push('/')
         },
         (err) => {
-          alert('Error')
+          console.error(err)
+          alert('수정에 실패했습니다.')
         }
       )
-      .catch(function (error) {
-        alert('error')
-      })
     }
   }
 }
