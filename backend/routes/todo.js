@@ -11,6 +11,8 @@ router.get('/', todosController.index)
 // get /todos/:id
 router.get('/:id', todosController.show);
 
+router.put('/complete/:id', todosController.complete);
+
 // CREATE
 // post /todos/create
 router.post('/create', todosController.create);

@@ -13,6 +13,10 @@ let TodoSchema = new mongoose.Schema({
     type: Number,
     optional: true
   },
+  complete: {
+    type: Boolean,
+    default: false
+  },
   createAt: {
     type: Date,
     default: Date.now

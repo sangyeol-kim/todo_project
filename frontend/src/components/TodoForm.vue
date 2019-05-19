@@ -4,6 +4,7 @@
         <b-field>
           <b-input 
             v-model="todo.title"
+            v-validate="required"
             placeholder="할 일을 작성해주세요."
             icon="fas fa-list-ul"
             size="is-large">
@@ -43,7 +44,7 @@
         </div>
       </div>
       <b-button class="create-button"
-        v-on:click.prevent="create" 
+        v-on:click.prevent="create"
         type="is-primary">
         등록하기
       </b-button>
@@ -67,15 +68,16 @@ export default {
       .then(
         (response) => {
           this.$emit("create", response.data)
+          this.resetFields()
         },
         (err) => {
-          alert('Error')
+          alert('To-do를 입력해주세요!')
         }
       )
-      .catch(function (error) {
-        alert('error')
-      })
-    }
+    },
+    resetFields () {
+      this.todo.title = "";
+    },
   }
 }
 </script>
