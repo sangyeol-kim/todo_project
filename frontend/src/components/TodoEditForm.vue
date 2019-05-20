@@ -20,6 +20,7 @@
             v-model="todo.deadline"
             open-on-focus="false"
             size="is-medium"
+            date-parser="dateParser"
             :min-date="minDate">
           </b-datepicker>
         </b-field>
@@ -96,6 +97,9 @@ export default {
   },
   methods: {
     // Update button을 클릭했을 때 호출되는 api
+    dateParser(date) {
+      return new Date(Date.parse(date))
+    },
     update (id) {
       axios.put(`/api/todos/${id}`, this.todo)
       .then(
