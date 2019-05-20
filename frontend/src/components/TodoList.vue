@@ -1,8 +1,5 @@
 <template>
   <section class="hero">
-    <span class="text-muted pr-2" >
-      {{ago}}
-    </span>
     <div class="hero-body">
       <div class="container">
         <h1 class="list-title">나만의 To-Do를 관리해보세요!</h1>

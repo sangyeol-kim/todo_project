@@ -75,7 +75,6 @@ export default {
   data () {
     // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
-
     return {
       todo: {},
       minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
@@ -109,10 +108,6 @@ export default {
           this.warning('수정에 실패했습니다. 다시 시도해주세요!')
         }
       )
-    },
-    interval() {
-       hello= setInterval(alert("ㅎㅇ"), 10000)
-       hello();
     },
     warning(messages) {
       this.$snackbar.open({
