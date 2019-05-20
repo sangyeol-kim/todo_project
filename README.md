@@ -98,7 +98,7 @@ $ mongo -u "admin_user" -p "admin_pass"
 > exit
 ```
 
-**9. clone한 프로젝트 폴더의 Npm 의존성 설치**
+**9. clone한 프로젝트 폴더의 NPM 의존성 설치**
 
 ```
 $ cd backend
@@ -116,7 +116,7 @@ $ vi .env
 
 // .env 파일을 다음과 같이 수정해주세요.
 PORT=3000
-MONGO_URI="mongodb://<ec2_instance_public_ip>/TodoDB"
+MONGO_URI="mongodb://localhost/TodoDB"
 MONGO_USER = "dev_user"
 MONGO_PASS = "dev_pass"
 ```
