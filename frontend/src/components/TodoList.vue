@@ -1,5 +1,8 @@
 <template>
   <section class="hero">
+    <span class="text-muted pr-2" >
+      {{ago}}
+    </span>
     <div class="hero-body">
       <div class="container">
         <h1 class="list-title">나만의 To-Do를 관리해보세요!</h1>
@@ -49,7 +52,7 @@
               </span>
             </b-table-column>
             <!-- 수정, 삭제 버튼 -->
-            <b-table-column centered="true" field="deadline" label="버튼">
+            <b-table-column centered="true" field="button" label="버튼">
               <router-link :to="{ name: 'Edit', params: { id: props.row._id }}">
                 <b-icon class="far fa-edit"></b-icon>
               </router-link>
@@ -81,7 +84,7 @@ export default {
       isPaginated: true,
       isPaginationSimple: false,
       currentPage: 1,
-      perPage: 10
+      perPage: 10,
     }
   },
   created () {

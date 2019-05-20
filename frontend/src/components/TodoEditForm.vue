@@ -18,7 +18,6 @@
         <b-field class="deadline-field">
           <b-datepicker
             v-model="todo.deadline"
-            icon="far fa-calendar-alt"
             size="is-medium"
             :min-date="minDate">
           </b-datepicker>
@@ -69,16 +68,16 @@
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
 import { Snackbar } from 'buefy/dist/components/snackbar'
+import moment from 'moment'
 
 export default {
   data () {
     // 현재 Date를 기준으로 Datepicker에서 선택할 수 있는 날짜 범위를 지정하기 위한 코드
     const today = new Date()
+
     return {
       todo: {},
-      date: new Date(),
       minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
     }
   },
@@ -88,6 +87,9 @@ export default {
     axios.get(`/api/todos/edit/${id}`)
     .then((response) => {
       this.todo = response.data
+      this.todo.deadline = new Date(this.todo.deadline)
+      this.interval();
+      console.log(this)
     },
     (err) => {
       console.error(err)
@@ -108,8 +110,9 @@ export default {
         }
       )
     },
-    moment (day) {
-      return moment(day).format('YYYY-MM-DD');
+    interval() {
+       hello= setInterval(alert("ㅎㅇ"), 10000)
+       hello();
     },
     warning(messages) {
       this.$snackbar.open({
