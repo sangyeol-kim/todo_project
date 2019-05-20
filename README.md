@@ -1,6 +1,6 @@
 # To-do with SPA (Node.js + Express.js + Vue.js + MongoDB)
 
-[🚀 Demo Application Link](http://54.180.97.56:3000/)
+[🚀 Demo Application Link](http://54.180.97.56/)
 
 **사용 팁**
 - 사용자의 선택에 따라 우선순위와 데드라인을 설정할 수 있습니다.
@@ -162,7 +162,7 @@ localhost://3000으로 접속하면 배포한 SPA를 확인할 수 있습니다.
 - [x] 소스 코드가 담긴 github URL
   - [Project Repository](https://github.com/sangyeol-kim/todo_project)
 - [x] 접속하여 테스트 가능한 URL
-  - [Demo Application on AWS](http://54.180.97.56:3000/)
+  - [Demo Application on AWS](http://54.180.97.56/)
 
 ## 개선사항
 
