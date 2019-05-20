@@ -13,8 +13,8 @@ exports.create = (req, res, next) => {
   console.log(req.body)
   let todo = new Todo({
     title: req.body.title,
-    // deadline을 지정하지 않았을 경우 빈 문자열 반환
-    deadline: req.body.deadline || '',
+    // deadline을 지정하지 않았을 경우 null 반환
+    deadline: req.body.deadline || null,
     // priority를 지정하지 않았을 경우 3 (우선순위 낮음)
     priority: req.body.priority || 3
   });
